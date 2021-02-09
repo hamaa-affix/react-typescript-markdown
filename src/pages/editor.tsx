@@ -1,7 +1,7 @@
 import React from "react";
 import { useStateWithStorage } from "../hooks/use_state_with_storage";
 import styled from "styled-components";
-
+import ReactMarkdown from "react-markdown";
 const StorageKey = "pages/editor:text";
 
 const Header = styled.header`
@@ -56,7 +56,9 @@ const Editer: React.FC = () => {
           value={text}
           onChange={(event: any) => setText(event.target.value)}
         />
-        <Preview>プレビューエリア</Preview>
+        <Preview>
+          <ReactMarkdown source={text} />{" "}
+        </Preview>
       </Wrapper>
     </>
   );
