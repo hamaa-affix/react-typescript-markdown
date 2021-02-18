@@ -1,4 +1,5 @@
 import { render } from "react-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import App from "./App";
 import Editer from "./pages/editor";
@@ -13,10 +14,16 @@ const GlobalStyle = createGlobalStyle`
   `;
 
 const Main = (
-  <>
-    <GlobalStyle />
-    <Editer />
-  </>
+  <BrowserRouter>
+    <>
+      <GlobalStyle />
+      <Route exact path="/editor" component={Editer} />
+      <Route exact path="/history">
+        <h1>history</h1>
+      </Route>
+      <Redirect to="/editor" path="*" />
+    </>
+  </BrowserRouter>
 );
 
 render(Main, document.getElementById("root"));
